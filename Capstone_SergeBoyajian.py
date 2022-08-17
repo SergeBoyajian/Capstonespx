@@ -37,12 +37,6 @@ from pandas.tseries.offsets import BDay
 
 
 
-
-
-stop = set(stopwords.words())
-stop.update({"whose","text","index"})
-punctuation = list(string.punctuation)
-
 #########################################Initiate the new Strealit layout- Customized
 st.set_page_config(layout="wide")
 
