@@ -172,10 +172,5 @@ webdriver-manager==3.8.2
 webencodings==0.5.1
 Werkzeug==2.1.2
 widgetsnbextension==3.5.2
-wordcloud==1.8.2.2
-wrapt==1.14.1
-wsproto==1.1.0
-xgboost==1.6.1
 yellowbrick==1.4
 yfinance==0.1.74
-zipp==3.8.0
