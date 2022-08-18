@@ -101,7 +101,6 @@ platformdirs==2.4.1
 plotly==5.6.0
 prometheus-client==0.13.1
 prompt-toolkit==3.0.26
-protobuf==3.19.3
 pure-eval==0.2.2
 pyarrow==7.0.0
 pyasn1==0.4.8
