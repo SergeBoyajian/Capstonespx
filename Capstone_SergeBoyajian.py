@@ -583,7 +583,7 @@ if menu_id=="Backtesting Forecasts":
 
         # # Add compound score of sentiment
         fig.add_scatter(x=dataset["Date"], y=dataset['Forecast'], mode='lines', name= "Forecast")
-        fig.update_layout( autosize=False,width=800, height=650, title="Performance on Testing Data" )
+        fig.update_layout( autosize=False,width=700, height=550, title="Performance on Testing Data" )
         # Show plot
         st.write(fig)
         st.write(f"The training data includes all closing prices of the S&P 500 index from 19 September 2002 until 8 June 2015. Basically, the tuned LSTM model was trained on the mentioned data and told to forecast the closing prices of the index from 8 June 2015 until 8 August 2018. As seen above, the tuned LSTM model was able to forecast the test data of the S&P 500 index closing prices with an RMSE of USD {rmse:.2f} which is much lower than the average closing prices divided by 2 (USD 958.16)")
@@ -634,7 +634,7 @@ if menu_id=="Backtesting Forecasts":
 
         # # Add compound score of sentiment
         fig1.add_scatter(x=dataset["Date"], y=dataset['Forecast'], mode='lines', name= "Forecast")
-        fig1.update_layout( autosize=False,width=800, height=650, title="Performance on Unseen Data" )
+        fig1.update_layout( autosize=False,width=700, height=550, title="Performance on Unseen Data" )
         # Show plot
         st.write(" ")
         st.write(" ")
