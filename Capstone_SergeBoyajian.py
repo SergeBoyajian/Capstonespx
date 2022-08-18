@@ -17,7 +17,6 @@ import streamlit.components.v1 as components
 import plotly.graph_objects as go
 import plotly.express as px
 import datetime
-from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import math
 from sklearn.preprocessing import MinMaxScaler
