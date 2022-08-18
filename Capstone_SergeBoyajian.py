@@ -640,7 +640,7 @@ if menu_id=="Backtesting Forecasts":
         st.write(" ")
         st.write(" ")
         st.write(" ")
-        st.write(" ")
+      
         st.write(fig1)
         st.write(f"The tuned and trained LSTM model was used to directly predict the unseen data passed which includes the index closing prices from 8 August 2018 until end of July 2022. The plot shows the performance of the tuned model in forecasting completely unseen data. As seen above, the tuned LSTM model was able to forecast the validation (unseen data) of the S&P 500 index closing prices with an RMSE of USD {rmse:.2f} which is much lower than the average closing prices divided by 2 (USD 958.16)")
 
