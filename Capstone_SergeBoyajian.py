@@ -900,7 +900,7 @@ if menu_id=="Price Forecast":
     #Scrape the previous 5 business Days
 
     spx=yf.Ticker("^GSPC")
-    start= date.today()-BDay(4)
+    start= date.today()-BDay(5)
     end= date.today()
     x_input = spx.history(start=start, end=end, interval="1d")
     x_input.reset_index(inplace=True)
