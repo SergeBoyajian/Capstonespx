@@ -72,5 +72,4 @@ webencodings==0.5.1
 Werkzeug==2.1.2
 widgetsnbextension==3.5.2
 yfinance==0.1.74
-chromium
-chromium-driver
+
