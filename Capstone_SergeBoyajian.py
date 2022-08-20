@@ -726,7 +726,7 @@ if menu_id=="News & Sentiments":
                 return 'Positive'
             else:
                 return 'Neutral'
-        df2['Sentiment'] = df2['polarity'].apply(getSentiment)
+        df2['Sentiment'] = df2['compound'].apply(getSentiment)
 
         st.subheader("Sentiments of News Headlines, Last 5 Days")
         color_discrete_map = {'Neutral': 'rgb(219,199,182)', 'Positive': 'rgb(219,199,182)', 'Negative':'rgb(219,199,182)'}
