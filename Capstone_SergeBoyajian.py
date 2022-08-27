@@ -45,7 +45,7 @@ menu_data = [
     {'label': "Dashboard", "icon": 'bi bi-clipboard-data'},
     {'label': 'Backtesting Sentiment Analysis', 'icon': 'bi bi-twitter'},
     {'label': 'Backtesting Forecasts', 'icon': 'bi bi-activity'},
-    {'label': 'News & Sentiments', 'icon': 'bi bi-caret-right'},
+#     {'label': 'News & Sentiments', 'icon': 'bi bi-caret-right'},
     {'label': 'Tweets & Sentiments', 'icon': 'bi bi-caret-right'},
     {'label': 'Price Forecast', 'icon': 'bi bi-caret-right'}]
 over_theme = {'txc_inactive': 'white','menu_background':'rgb(183,142,108)', 'option_active':'white'}
@@ -647,109 +647,109 @@ if menu_id=="Backtesting Forecasts":
 
 ######################################### Predictions: News Headlines, Tweets, S&P 500 Price Chart #########################################
 
-if menu_id=="News & Sentiments":
-    # pd.set_option('display.max_rows', None)
-    # pd.set_option('display.max_columns', None)
-    # pd.set_option('display.width', None)
-    # pd.set_option('display.max_colwidth', None)
-######################################### Sentiment Analysis on News Headdlines
-    col, img= st.columns(2)
-    with col:
-        warnings.filterwarnings("ignore", category=DeprecationWarning)
+# if menu_id=="News & Sentiments":
+#     # pd.set_option('display.max_rows', None)
+#     # pd.set_option('display.max_columns', None)
+#     # pd.set_option('display.width', None)
+#     # pd.set_option('display.max_colwidth', None)
+# ######################################### Sentiment Analysis on News Headdlines
+#     col, img= st.columns(2)
+#     with col:
+#         warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-        options = webdriver.ChromeOptions()
-        options.add_argument("headless")
-        driver = webdriver.Chrome(ChromeDriverManager().install())
-        # driver.implicitly_wait(15)
-        # driver = webdriver.Chrome("./chromedriver", chrome_options=options)
+#         options = webdriver.ChromeOptions()
+#         options.add_argument("headless")
+#         driver = webdriver.Chrome(ChromeDriverManager().install())
+#         # driver.implicitly_wait(15)
+#         # driver = webdriver.Chrome("./chromedriver", chrome_options=options)
 
-        st.write("Opening website...")
-        driver.get("https://www.tradingview.com/symbols/SPX/news/")
-        news_container = driver.find_element(By.CLASS_NAME, "grid-gjUO4ZsZ")
+#         st.write("Opening website...")
+#         driver.get("https://www.tradingview.com/symbols/SPX/news/")
+#         news_container = driver.find_element(By.CLASS_NAME, "grid-gjUO4ZsZ")
 
-        print("Waiting for news to show...")
-        # WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.TAG_NAME, "a")))
-        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".grid-gjUO4ZsZ a")))
-        # news_elements = news_container.find_elements(By.TAG_NAME, "a")
-        news_elements = driver.find_elements(By.CSS_SELECTOR, ".grid-gjUO4ZsZ a")
-        # print(news_elements)
-        max_index = len(news_elements)
-        index = 0
+#         print("Waiting for news to show...")
+#         # WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.TAG_NAME, "a")))
+#         WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".grid-gjUO4ZsZ a")))
+#         # news_elements = news_container.find_elements(By.TAG_NAME, "a")
+#         news_elements = driver.find_elements(By.CSS_SELECTOR, ".grid-gjUO4ZsZ a")
+#         # print(news_elements)
+#         max_index = len(news_elements)
+#         index = 0
 
-        result = []
+#         result = []
 
-        # st.write("Getting news...")
-        with st.spinner("Scraping All Recent S&P 500 News..."):
-            while index < max_index:
-                try:
-                    WebDriverWait(driver, 30).until(
-                        EC.element_to_be_clickable((By.CSS_SELECTOR, ".card-BohupzCl.cardLink-BohupzCl")))
-                    news_array = news_container.find_elements(By.CSS_SELECTOR, ".card-BohupzCl.cardLink-BohupzCl")
-                    news_element = news_array[index]
-                    TIME = news_element.find_element(By.TAG_NAME, "relative-time").get_attribute("event-time")
-                    HEADER = news_element.find_element(By.CLASS_NAME, "title-O1eazALv").text
-                    result.append([TIME, HEADER])
-                    index += 1
-                    # if index % 50 == 0:
-                    #     st.write(f"{index / 2}% done")
-                except:
-                    break
-                    # df = pd.DataFrame(result, columns=["Date", "Header"])
-                    # # dataframe.to_csv("dataframe.csv", index=False)
-                    # st.write(df)
-                    # # exit(f"Code stopped because of an 'element not found' error at {index / 2}%")
-            st.success("Done!")
-            df = pd.DataFrame(result, columns=["Date", "Header"])
+#         # st.write("Getting news...")
+#         with st.spinner("Scraping All Recent S&P 500 News..."):
+#             while index < max_index:
+#                 try:
+#                     WebDriverWait(driver, 30).until(
+#                         EC.element_to_be_clickable((By.CSS_SELECTOR, ".card-BohupzCl.cardLink-BohupzCl")))
+#                     news_array = news_container.find_elements(By.CSS_SELECTOR, ".card-BohupzCl.cardLink-BohupzCl")
+#                     news_element = news_array[index]
+#                     TIME = news_element.find_element(By.TAG_NAME, "relative-time").get_attribute("event-time")
+#                     HEADER = news_element.find_element(By.CLASS_NAME, "title-O1eazALv").text
+#                     result.append([TIME, HEADER])
+#                     index += 1
+#                     # if index % 50 == 0:
+#                     #     st.write(f"{index / 2}% done")
+#                 except:
+#                     break
+#                     # df = pd.DataFrame(result, columns=["Date", "Header"])
+#                     # # dataframe.to_csv("dataframe.csv", index=False)
+#                     # st.write(df)
+#                     # # exit(f"Code stopped because of an 'element not found' error at {index / 2}%")
+#             st.success("Done!")
+#             df = pd.DataFrame(result, columns=["Date", "Header"])
 
-            # dataframe.to_csv("dataframe.csv", index=False)
-            st.write(df)
-            driver.close()
-            driver.quit()
-    #
-        # if st.button("Get Sentiment Analysis"):
-        analyser = SentimentIntensityAnalyzer()
-        # function to calculate polarity scores
-        pol = lambda x: analyser.polarity_scores(x)
-        # creating new column 'polarity' in clean_df
-        df['polarity'] = df['Header'].apply(pol)
-        df1=df['polarity'].apply(pd.Series)
-        df2 = pd.concat([df, df['polarity'].apply(pd.Series)], axis=1)
-        df2['Dates'] = pd.to_datetime(df2['Date']).dt.date
-        df2= df2[df2['Dates'].between(date.today() - timedelta(days=5), date.today())]
+#             # dataframe.to_csv("dataframe.csv", index=False)
+#             st.write(df)
+#             driver.close()
+#             driver.quit()
+#     #
+#         # if st.button("Get Sentiment Analysis"):
+#         analyser = SentimentIntensityAnalyzer()
+#         # function to calculate polarity scores
+#         pol = lambda x: analyser.polarity_scores(x)
+#         # creating new column 'polarity' in clean_df
+#         df['polarity'] = df['Header'].apply(pol)
+#         df1=df['polarity'].apply(pd.Series)
+#         df2 = pd.concat([df, df['polarity'].apply(pd.Series)], axis=1)
+#         df2['Dates'] = pd.to_datetime(df2['Date']).dt.date
+#         df2= df2[df2['Dates'].between(date.today() - timedelta(days=5), date.today())]
 
 
-        #Classify tweets based on their compound scores to three labels: Positive, Negative and Neutral
-        def getSentiment(score):
-            if score <= -0.05:
-                return 'Negative'
-            elif score >= 0.05:
-                return 'Positive'
-            else:
-                return 'Neutral'
-        df2['Sentiment'] = df2['compound'].apply(getSentiment)
+#         #Classify tweets based on their compound scores to three labels: Positive, Negative and Neutral
+#         def getSentiment(score):
+#             if score <= -0.05:
+#                 return 'Negative'
+#             elif score >= 0.05:
+#                 return 'Positive'
+#             else:
+#                 return 'Neutral'
+#         df2['Sentiment'] = df2['compound'].apply(getSentiment)
 
-        st.subheader("Sentiments of News Headlines, Last 5 Days")
-        color_discrete_map = {'Neutral': 'rgb(219,199,182)', 'Positive': 'rgb(219,199,182)', 'Negative':'rgb(219,199,182)'}
-        d = df2.groupby(by=["Sentiment"]).size().reset_index(name="Counts").sort_values(by='Counts', ascending=False)
-        fig2=px.bar(d, x="Counts", y="Sentiment", color="Sentiment", color_discrete_map= color_discrete_map)
-        fig2.update_traces(textfont_size=14, textangle=90, textposition="inside", cliponaxis=False)
-        fig2.update_layout(template='simple_white',showlegend=False, autosize=False,width=650, height=400,margin=dict(
-        l=0,
-        r=0,
-        b=0,
-        t=10,
-        pad=0
-        ))
-        st.write(fig2, use_container_width=True)
+#         st.subheader("Sentiments of News Headlines, Last 5 Days")
+#         color_discrete_map = {'Neutral': 'rgb(219,199,182)', 'Positive': 'rgb(219,199,182)', 'Negative':'rgb(219,199,182)'}
+#         d = df2.groupby(by=["Sentiment"]).size().reset_index(name="Counts").sort_values(by='Counts', ascending=False)
+#         fig2=px.bar(d, x="Counts", y="Sentiment", color="Sentiment", color_discrete_map= color_discrete_map)
+#         fig2.update_traces(textfont_size=14, textangle=90, textposition="inside", cliponaxis=False)
+#         fig2.update_layout(template='simple_white',showlegend=False, autosize=False,width=650, height=400,margin=dict(
+#         l=0,
+#         r=0,
+#         b=0,
+#         t=10,
+#         pad=0
+#         ))
+#         st.write(fig2, use_container_width=True)
 
-    with img:
-        st.write(" ")
-        st.write(" ")
-        st.write(" ")
-        st.write(" ")
-        st.image("https://raw.githubusercontent.com/SergeBoyajian/Capstonespx/main/aditya-vyas-7ygsBEajOG0-unsplash.jpg", use_column_width=True)
-        # image = Image.open('C:\\Users\\admin\\Desktop\\AUB\\Capstone\\HD Pics\\aditya-vyas-7ygsBEajOG0-unsplash.jpg')
-        # st.image(image, use_column_width=True)
+#     with img:
+#         st.write(" ")
+#         st.write(" ")
+#         st.write(" ")
+#         st.write(" ")
+#         st.image("https://raw.githubusercontent.com/SergeBoyajian/Capstonespx/main/aditya-vyas-7ygsBEajOG0-unsplash.jpg", use_column_width=True)
+#         # image = Image.open('C:\\Users\\admin\\Desktop\\AUB\\Capstone\\HD Pics\\aditya-vyas-7ygsBEajOG0-unsplash.jpg')
+#         # st.image(image, use_column_width=True)
 # ########################################################### Sentiment Analysis on Tweets (past 5 days)
 if menu_id=="Tweets & Sentiments":
     col1, col2= st.columns(2)
